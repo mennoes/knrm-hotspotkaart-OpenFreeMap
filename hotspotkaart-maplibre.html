@@ -2180,11 +2180,6 @@
         try {
           if (location.protocol === "file:") return "local";
         } catch {}
-        try {
-          if (window.self !== window.top) return "embedded";
-        } catch {
-          return "embedded";
-        }
         return "normal";
       }
 
