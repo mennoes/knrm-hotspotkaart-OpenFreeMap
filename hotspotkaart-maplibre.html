@@ -1667,11 +1667,11 @@
       <div id="selectedLabel" aria-hidden="true"></div>
 
       <div class="map-controls" aria-label="Controls">
-        <button class="ctrl ctrl-alarm" id="alarmBtn" type="button" aria-label="NOOD op het water">
+        <button class="ctrl ctrl-alarm" id="alarmBtn" type="button" aria-label="Hulp nodig op het water?">
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <path d="M12 2C8.13 2 5 5.13 5 9v4.59l-.71.7A.996.996 0 0 0 5 16h14a.996.996 0 0 0 .71-1.71l-.71-.7V9c0-3.87-3.13-7-7-7zm1 19h-2v-2h2v2z" fill="currentColor"/>
           </svg>
-          NOOD
+          Hulp nodig?
         </button>
         <button class="ctrl ctrl-menu" id="menuBtn" type="button" aria-label="Menu" aria-expanded="false">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
@@ -1710,34 +1710,52 @@
         <div class="modal-backdrop" id="alarmBackdrop"></div>
         <div class="modal-card" role="document">
           <div class="modal-top">
-            <div class="modal-title">Nood op het water</div>
+            <div class="modal-title">Hulp nodig op het water?</div>
             <button class="modal-close" id="alarmClose" type="button" aria-label="Sluiten">×</button>
           </div>
           <div class="modal-body">
-            <div class="modal-lede">Bij direct gevaar bel je altijd eerst 112. Heb je hulp nodig op het water, gebruik dan de KNRM Helpt app of neem contact op met de Kustwacht.</div>
+            <div class="modal-lede">Bij een noodsituatie op het water alarmeer je via de marifoon (VHF kanaal 16 of DSC 70). Heb je geen marifoon? Neem dan contact op met de Kustwacht of bel 112. Gebruik je de KNRM Helpt-app? Druk op de rode knop NOODGEVAL.</div>
             <div class="modal-cta">
-              <a class="cta cta-112" href="tel:112">
-                <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M6.6 10.8a15.05 15.05 0 006.6 6.6l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.58.57.55 0 1 .45 1 1V21c0 .55-.45 1-1 1C10.3 22 2 13.7 2 3c0-.55.45-1 1-1h3.49c.55 0 1 .45 1 1 0 1.25.2 2.46.57 3.58.11.35.03.74-.25 1.02l-2.21 2.2z"/></svg>
-                BEL 112
+              <a class="cta cta-112" href="https://www.knrm.nl/alarmeren" target="_blank" rel="noreferrer">
+                <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M12 3a9 9 0 1 0 9 9 9 9 0 0 0-9-9zm1 14h-2v-2h2zm0-4h-2V7h2z"/></svg>
+                MARIFOON #16
               </a>
               <a class="cta cta-ghost" href="tel:09000111">
-                <span>BEL KUSTWACHT</span>
-                <small class="cta-sub">0900 0111</small>
+                <span>KUSTWACHT</span>
+                <small class="cta-sub">0900 0111 · 112</small>
               </a>
-              <a class="cta cta-ghost full" href="https://www.knrm.nl/helpt-app" target="_blank" rel="noreferrer">KNRM Helpt app</a>
+              <a class="cta cta-ghost full" href="https://www.knrm.nl/helpt-app" target="_blank" rel="noreferrer">KNRM Helpt-app</a>
             </div>
+            <p style="margin:14px 0 4px;font-size:13px"><a href="https://www.knrm.nl/alarmeren" target="_blank" rel="noreferrer" style="color:var(--knrm-blue);text-decoration:underline">Bekijk het stroomdiagram alarmeren ↗</a></p>
             <details class="dd">
-              <summary>Wanneer bel je wie</summary>
-              <div class="dd-body">Bel 112 bij direct levensgevaar. Heb je pech of een noodsituatie op het water, gebruik dan de KNRM Helpt app of neem contact op met de Kustwacht.</div>
+              <summary>Wanneer contact je wie?</summary>
+              <div class="dd-body">
+                <p style="margin:0 0 10px"><strong>Noodsituatie?</strong><br>Alarmeer de Kustwacht via marifoon (VHF kanaal 16 of DSC 70).<br>Geen marifoon? Bel 0900 – 0111 of +31 88 958 4040 (Kustwacht) of 112 (landelijke meldkamer).<br>Gebruik je de KNRM Helpt-app? Druk op de rode knop NOODGEVAL.</p>
+                <p style="margin:0 0 10px"><strong>Geen nood, wel hulp nodig?</strong><br>Neem contact op met het KNRM Helpt Assistentie Centrum (KAC).<br>Gebruik de KNRM Helpt-app en kies de groene knop ASSISTENTIE, of bel 088 – 999 6100.</p>
+                <p style="margin:0"><a href="https://www.knrm.nl/alarmeren" target="_blank" rel="noreferrer" style="color:var(--knrm-blue);text-decoration:underline">Bekijk het stroomdiagram ↗</a></p>
+              </div>
             </details>
             <details class="dd">
               <summary>Wat geef je door</summary>
-              <div class="dd-body">Vertel wie je bent, wat er aan de hand is, waar je bent en met hoeveel personen je bent. Blijf bereikbaar en blijf bij het vaartuig als dat veilig kan.</div>
+              <div class="dd-body">
+                <p style="margin:0 0 10px">Alarmeer de Kustwacht als je hulp nodig hebt in het Nederlandse deel van de Noordzee, de Waddenzee, het IJsselmeer, het Markermeer, de randmeren en de Zeeuwse en Zuid-Hollandse stromen. Als je de Kustwacht alarmeert, dan helpt het als je weet welke informatie je moet doorgeven:</p>
+                <ul style="margin:0;padding-left:18px">
+                  <li><strong>Wie:</strong> (scheeps-)naam, persoon.</li>
+                  <li><strong>Wat</strong> is er aan de hand, het type schip of (kite)board, de kleur, afmetingen.</li>
+                  <li><strong>Waar:</strong> de (geografische) positie, vaarroute, vaarplan, tijden.</li>
+                  <li><strong>Welke hulp</strong> heb je nodig.</li>
+                  <li><strong>Wanneer</strong> was er voor het laatst een positie bekend of voor het laatst contact.</li>
+                </ul>
+              </div>
             </details>
             <details class="dd">
-              <summary>KNRM Helpt app</summary>
+              <summary>KNRM Helpt-app</summary>
               <div class="dd-body">
-                <p style="margin:0 0 14px">De KNRM Helpt app helpt je veilig op het water — met actuele info, vaarplannen en directe noodhulp. Met de rode knop NOODGEVAL deel je direct je positie en gegevens met de hulpdiensten.</p>
+                <p style="margin:0 0 10px">De KNRM Helpt-app is een praktisch hulpmiddel voor watersporters, vóór en tijdens je tocht.</p>
+                <p style="margin:0 0 10px">Met de app kun je je tocht voorbereiden en onderweg actuele informatie raadplegen, zoals weer, vaarkaarten, marifoonkanalen en gegevens in de omgeving.</p>
+                <p style="margin:0 0 10px">Je kunt je vaartocht delen, zodat je gevolgd kunt worden door thuisblijvers. Rond je je tocht niet af? Dan stuurt de app eerst een melding naar jou en een bericht naar je thuisblijvers. Blijft reactie uit, dan wordt de Kustwacht automatisch geïnformeerd.</p>
+                <p style="margin:0 0 10px">Heb je hulp nodig, maar is er geen spoed? Dan kun je via de app eenvoudig een assistentieverzoek doen via de groene knop ASSISTENTIE, die wordt doorgezet naar het KNRM Helpt Assistentie Centrum.</p>
+                <p style="margin:0 0 14px">In een noodsituatie gebruik je de rode knop NOODGEVAL. De app stuurt daarbij automatisch je locatie en gegevens door, zodat hulpdiensten snel weten waar je bent. De KNRM Helpt-app is gratis te downloaden.</p>
                 <p class="app-section-title">Download de app</p>
                 <div class="app-stores" style="margin-bottom:10px">
                   <a class="app-store-btn" href="https://itunes.apple.com/nl/app/knrm-helpt/id940642344" target="_blank" rel="noreferrer">
@@ -1872,7 +1890,7 @@
             <button class="modal-close" id="appClose" type="button" aria-label="Sluiten">×</button>
           </div>
           <div class="overlay-body app-body">
-            <p class="app-tagline">De <strong>KNRM Helpt</strong> app helpt je om goed voorbereid het water op te gaan. Check het weer, maak een vaarplan en deel je positie met dierbaren. Bij nood stuur je met één druk op de knop een noodsignaal met je exacte locatie naar de hulpdiensten.</p>
+            <p class="app-tagline">De <strong>KNRM Helpt-app</strong> helpt je om goed voorbereid het water op te gaan. Check het weer, maak een vaarplan en deel je positie met dierbaren. Bij nood stuur je met één druk op de knop een noodsignaal met je exacte locatie naar de hulpdiensten.</p>
             <a class="app-download-banner" href="https://www.knrm.nl/helpt" target="_blank" rel="noreferrer">
               <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M5 20h14v-2H5v2zm7-18v10.59l-3.3-3.3-1.41 1.42L12 16l4.71-4.29-1.41-1.42L13 13.59V2h-1z"/></svg>
               Download nu — gratis
@@ -1976,6 +1994,10 @@
                 <div class="meta-label">Advies</div>
                 <div class="meta-value" id="hsDo">nvt</div>
               </div>
+              <div class="meta-row">
+                <div class="meta-label">Pas op</div>
+                <div class="meta-value" id="hsPasop">nvt</div>
+              </div>
             </div>
             <div class="label" style="font-size:16px; margin-top:16px;">VIDEO</div>
             <div id="videoEmpty" class="hint">Geen video voor deze hotspot.</div>
@@ -2006,24 +2028,26 @@
         {
           id: "wadden",
           region: "Waddengebied",
-          titleLine1: "Droogvallen",
+          titleLine1: "Vastlopen op ondieptes",
           name: "Waddengebied",
-          type: "Navigatie",
-          cause: "Droogvallen op zandbanken door getij en verschuivende platen.",
-          do: "Blijf bij je boot en wacht op opkomend water.",
+          type: "Ondieptes",
+          cause: "Navigatie, getij en wind.",
+          do: "Blijf binnen de (recreatie)betonning. Gebruik actuele waterkaarten en bereid je tocht goed voor.",
+          pasop: "Snelle ondieptes buiten de betonning.",
           lat: 53.3,
           lon: 5.2,
           link: "https://www.knrm.nl/blog/tips/hotspotkaart",
-          video: PLACEHOLDER_VIDEO
+          video: "https://youtu.be/pTYios9oyLA"
         },
         {
           id: "ijsselmeer",
           region: "IJsselmeer",
-          titleLine1: "Snelle golfslag",
+          titleLine1: "Vastlopen op ondieptes",
           name: "IJsselmeer",
-          type: "Weer",
-          cause: "Wind kan hier snel hoge en steile golven opbouwen.",
-          do: "Pas snelheid aan en zoek beschutting.",
+          type: "Ondieptes",
+          cause: "Navigatie, wind en onervarenheid.",
+          do: "Blijf binnen de vaargeul en gebruik actuele waterkaarten. Houd rekening met wind en golfopbouw.",
+          pasop: "Snelle diepteverschillen bij zandbanken zoals de Steile Bank en Vrouwezand.",
           lat: 52.8,
           lon: 5.4,
           link: "https://www.knrm.nl/blog/tips/hotspotkaart",
@@ -2032,11 +2056,12 @@
         {
           id: "zuidwest",
           region: "Zuidwest Nederland",
-          titleLine1: "Sterke stroming",
+          titleLine1: "Vastlopen op ondieptes",
           name: "Zuidwest NL",
-          type: "Stroming",
-          cause: "Sterke getijstroming en drukke vaargeulen maken dit gebied verraderlijk.",
-          do: "Blijf buiten de hoofdvaargeul bij problemen.",
+          type: "Ondieptes",
+          cause: "Navigatie en wind.",
+          do: "Blijf binnen de betonning en gebruik actuele waterkaarten. Houd rekening met veranderende omstandigheden door wind.",
+          pasop: "Scherpe oesters op de bodem van het Veerse Meer kunnen verwondingen veroorzaken.",
           lat: 51.6,
           lon: 3.8,
           link: "https://www.knrm.nl/blog/tips/hotspotkaart",
@@ -2045,11 +2070,12 @@
         {
           id: "randmeren",
           region: "Randmeren",
-          titleLine1: "Motorpech",
+          titleLine1: "Motorproblemen",
           name: "Randmeren",
           type: "Motorproblemen",
-          cause: "Motorproblemen en lege accu's zorgen hier vaak voor pech op druk water.",
-          do: "Ga voor anker en vraag hulp indien nodig.",
+          cause: "Waterplanten, wind en golfslag.",
+          do: "Houd rekening met waterplanten, blijf binnen de vaargeul. Controleer je schroef regelmatig. Pas je vaart aan bij wind en golfslag.",
+          pasop: "Waterplanten.",
           lat: 52.35,
           lon: 5.6,
           link: "https://www.knrm.nl/blog/tips/hotspotkaart",
@@ -2058,11 +2084,12 @@
         {
           id: "biesbosch",
           region: "Biesbosch",
-          titleLine1: "Vastlopen",
+          titleLine1: "Motorproblemen en vastlopen",
           name: "Biesbosch",
           type: "Ondieptes",
-          cause: "Ondiepe kreken en smalle vaarwegen vergroten de kans op vastlopen.",
-          do: "Zet de motor uit en probeer rustig los te komen.",
+          cause: "Navigatie, getij, voorbereiding en onervarenheid.",
+          do: "Houd rekening met het getij en de waterstand. Probeer bij vastlopen eerst zelf los te komen door gewicht te verplaatsen en de boot voorzichtig los te duwen.",
+          pasop: "Ondieptes, strekdammen en kribben liggen soms net onder het wateroppervlak.",
           lat: 51.73,
           lon: 4.8,
           link: "https://www.knrm.nl/blog/tips/hotspotkaart",
@@ -2109,6 +2136,7 @@
         hsProblem: document.getElementById("hsProblem"),
         hsCause: document.getElementById("hsCause"),
         hsDo: document.getElementById("hsDo"),
+        hsPasop: document.getElementById("hsPasop"),
         hsLink: document.getElementById("hsLink"),
         videoEmpty: document.getElementById("videoEmpty"),
         videoPlaceholder: document.getElementById("videoPlaceholder"),
@@ -2613,6 +2641,7 @@
         els.hsProblem.textContent = h.type || "nvt";
         els.hsCause.textContent = h.cause || "nvt";
         els.hsDo.textContent = h.do || "nvt";
+        els.hsPasop.textContent = h.pasop || "nvt";
         els.hsLink.href = h.link || "#";
         clearVideoUI();
         if (!h.video) return;
@@ -2668,6 +2697,7 @@
         els.hsProblem.textContent = "Klik een hotspot";
         els.hsCause.textContent = "nvt";
         els.hsDo.textContent = "nvt";
+        els.hsPasop.textContent = "nvt";
         els.hsLink.href = "#";
         clearVideoUI();
         closePanel();
