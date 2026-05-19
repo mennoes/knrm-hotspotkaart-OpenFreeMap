@@ -2239,13 +2239,13 @@
         return "https://tiles.openfreemap.org/styles/liberty";
       }
 
-      const ORIGINAL_PAINT = {};
       function applyMapTheme(theme) {
         const mapEl = document.getElementById("map");
         if (mapEl) mapEl.style.filter = "";
         if (!window.map || !map.getStyle) return;
-        const apply = () => {
-          const isDark = theme === "dark";
+        const isDark = theme === "dark";
+
+        const tintDark = () => {
           const waterColor = "#0d1a2a";
           const backgroundColor = "#0d1a2a";
           const landColor = "#1a2b3d";
@@ -2262,28 +2262,26 @@
                 id.includes("landcover") || id.includes("landuse") || id === "land" ||
                 sl === "landcover" || sl === "landuse" || sl === "land" || id.includes("park")
               );
-              const prop = isBackground ? "background-color"
-                : (type === "fill" ? "fill-color"
-                : (type === "line" ? "line-color" : null));
-              if (!prop) return;
-              if (!(isWater || isBackground || isLand)) return;
-              // cache original once
-              if (!(layer.id in ORIGINAL_PAINT)) {
-                try { ORIGINAL_PAINT[layer.id] = { prop, value: map.getPaintProperty(layer.id, prop) }; } catch {}
-              }
               try {
-                if (isDark) {
-                  const c = isWater ? waterColor : (isBackground ? backgroundColor : landColor);
-                  map.setPaintProperty(layer.id, prop, c);
-                } else if (ORIGINAL_PAINT[layer.id]) {
-                  map.setPaintProperty(layer.id, prop, ORIGINAL_PAINT[layer.id].value);
+                if (isBackground) map.setPaintProperty(layer.id, "background-color", backgroundColor);
+                else if (isWater) {
+                  if (type === "fill") map.setPaintProperty(layer.id, "fill-color", waterColor);
+                  else if (type === "line") map.setPaintProperty(layer.id, "line-color", waterColor);
+                } else if (isLand) {
+                  map.setPaintProperty(layer.id, "fill-color", landColor);
                 }
               } catch {}
             });
           } catch {}
         };
-        if (map.isStyleLoaded && map.isStyleLoaded()) apply();
-        else map.once("styledata", apply);
+
+        if (isDark) {
+          if (map.isStyleLoaded && map.isStyleLoaded()) tintDark();
+          else map.once("styledata", tintDark);
+        } else {
+          // Restore original by reloading the base style
+          try { map.setStyle(getBaseStyleUrl()); } catch {}
+        }
       }
 
       function toYouTubeEmbed(url) {
