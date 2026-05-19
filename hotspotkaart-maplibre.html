@@ -846,7 +846,10 @@
         left: 50%;
         top: 50%;
         transform: translate(-50%, -50%);
-        width: min(400px, calc(100% - 32px));
+        width: min(480px, calc(100% - 32px));
+        max-height: calc(100% - 32px);
+        display: flex;
+        flex-direction: column;
         border-radius: 0;
         overflow: hidden;
         background: rgba(255, 255, 255, 0.96);
@@ -919,6 +922,16 @@
         position: relative;
         z-index: 1;
         padding: 14px;
+      }
+      .modal-card .modal-body {
+        flex: 1 1 auto;
+        min-height: 0;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior: contain;
+      }
+      .modal-card .modal-top {
+        flex: 0 0 auto;
       }
 
       .modal-body::before,
