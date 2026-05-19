@@ -2072,6 +2072,7 @@
           titleLine1: "Vastlopen op ondieptes",
           name: "Waddengebied",
           type: "Ondieptes",
+          problem: "Vastlopen op ondieptes rond alle eilanden.",
           cause: "Navigatie, getij en wind.",
           do: "Blijf binnen de (recreatie)betonning. Gebruik actuele waterkaarten en bereid je tocht goed voor.",
           pasop: "Snelle ondieptes buiten de betonning.",
@@ -2086,6 +2087,7 @@
           titleLine1: "Vastlopen op ondieptes",
           name: "IJsselmeer",
           type: "Ondieptes",
+          problem: "Vastlopen op ondieptes, met name aan de noordoostkant.",
           cause: "Navigatie, wind en onervarenheid.",
           do: "Blijf binnen de vaargeul en gebruik actuele waterkaarten. Houd rekening met wind en golfopbouw.",
           pasop: "Snelle diepteverschillen bij zandbanken zoals de Steile Bank en Vrouwezand.",
@@ -2100,6 +2102,7 @@
           titleLine1: "Vastlopen op ondieptes",
           name: "Zuidwest NL",
           type: "Ondieptes",
+          problem: "Vastlopen op ondieptes op Grevelingenmeer en Veerse Meer.",
           cause: "Navigatie en wind.",
           do: "Blijf binnen de betonning en gebruik actuele waterkaarten. Houd rekening met veranderende omstandigheden door wind.",
           pasop: "Scherpe oesters op de bodem van het Veerse Meer kunnen verwondingen veroorzaken.",
@@ -2114,13 +2117,14 @@
           titleLine1: "Motorproblemen",
           name: "Randmeren",
           type: "Motorproblemen",
+          problem: "Motorproblemen op IJmeer, Gooimeer en Eemmeer.",
           cause: "Waterplanten, wind en golfslag.",
           do: "Houd rekening met waterplanten, blijf binnen de vaargeul. Controleer je schroef regelmatig. Pas je vaart aan bij wind en golfslag.",
           pasop: "Waterplanten.",
           lat: 52.35,
           lon: 5.6,
           link: "https://www.knrm.nl/blog/tips/hotspotkaart",
-          video: PLACEHOLDER_VIDEO
+          video: ""
         },
         {
           id: "biesbosch",
@@ -2128,6 +2132,7 @@
           titleLine1: "Motorproblemen en vastlopen",
           name: "Biesbosch",
           type: "Ondieptes",
+          problem: "Motorproblemen en vastlopen op ondieptes.",
           cause: "Navigatie, getij, voorbereiding en onervarenheid.",
           do: "Houd rekening met het getij en de waterstand. Probeer bij vastlopen eerst zelf los te komen door gewicht te verplaatsen en de boot voorzichtig los te duwen.",
           pasop: "Ondieptes, strekdammen en kribben liggen soms net onder het wateroppervlak.",
@@ -2227,6 +2232,16 @@
 
       function getBaseStyleUrl() {
         return "https://tiles.openfreemap.org/styles/liberty";
+      }
+
+      function applyMapTheme(theme) {
+        const mapEl = document.getElementById("map");
+        if (!mapEl) return;
+        if (theme === "dark") {
+          mapEl.style.filter = "invert(0.92) hue-rotate(180deg) brightness(0.95) contrast(0.92) saturate(0.85)";
+        } else {
+          mapEl.style.filter = "";
+        }
       }
 
       function toYouTubeEmbed(url) {
@@ -2679,7 +2694,7 @@
         const iconEl = document.getElementById("hsTypeIcon");
         if (iconEl) iconEl.innerHTML = TYPE_ICONS[h.type] || "";
         els.hsLine1.textContent = "";
-        els.hsProblem.textContent = h.type || "nvt";
+        els.hsProblem.textContent = h.problem || h.type || "nvt";
         els.hsCause.textContent = h.cause || "nvt";
         els.hsDo.textContent = h.do || "nvt";
         els.hsPasop.textContent = h.pasop || "nvt";
@@ -2848,7 +2863,7 @@
           const newTheme = getTheme() === "dark" ? "light" : "dark";
           setTheme(newTheme);
           renderMenuTheme();
-          if (map) map.setStyle(getBaseStyleUrl());
+          applyMapTheme(newTheme);
         });
 
         // Menu: Agenda
@@ -2979,6 +2994,7 @@
 
       setTheme("light");
       renderMenuTheme();
+      applyMapTheme("light");
       if (map) {
         bindUi();
         map.on("load", initMapOnce);
