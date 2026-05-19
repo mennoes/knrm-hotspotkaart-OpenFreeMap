@@ -820,7 +820,8 @@
         display: none;
       }
 
-      body.alarm-open .modal {
+      body.alarm-open #alarmModal,
+      body.marifoon-open #marifoonModal {
         display: block;
       }
 
@@ -1724,6 +1725,30 @@
         </button>
       </div>
 
+      <div class="modal" id="marifoonModal" role="dialog" aria-modal="true" aria-hidden="true" style="z-index:1200">
+        <div class="modal-backdrop" id="marifoonBackdrop"></div>
+        <div class="modal-card" role="document" style="max-width:380px">
+          <div class="modal-top">
+            <div class="modal-title">Marifoon</div>
+            <button class="modal-close" id="marifoonClose" type="button" aria-label="Sluiten">×</button>
+          </div>
+          <div class="modal-body">
+            <div class="modal-lede" style="margin-bottom:12px">Alarmeer de Kustwacht via de marifoon:</div>
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <div style="padding:14px;border:1px solid var(--border);background:#f5f8fa">
+                <div style="font-size:12px;letter-spacing:1px;color:var(--knrm-blue);opacity:.7">VHF</div>
+                <div style="font-size:28px;font-weight:700;color:var(--knrm-blue);line-height:1.1">Kanaal 16</div>
+              </div>
+              <div style="padding:14px;border:1px solid var(--border);background:#f5f8fa">
+                <div style="font-size:12px;letter-spacing:1px;color:var(--knrm-blue);opacity:.7">Digital Selective Calling</div>
+                <div style="font-size:28px;font-weight:700;color:var(--knrm-blue);line-height:1.1">DSC 70</div>
+              </div>
+            </div>
+            <p style="margin:14px 0 0;font-size:13px;color:var(--knrm-blue)">Geen marifoon aan boord? Bel de Kustwacht op 0900 – 0111 of 112.</p>
+          </div>
+        </div>
+      </div>
+
       <div class="modal" id="alarmModal" role="dialog" aria-modal="true" aria-hidden="true">
         <div class="modal-backdrop" id="alarmBackdrop"></div>
         <div class="modal-card" role="document">
@@ -1734,10 +1759,10 @@
           <div class="modal-body">
             <div class="modal-lede">Bij een noodsituatie op het water alarmeer je via de marifoon (VHF kanaal 16 of DSC 70). Heb je geen marifoon? Neem dan contact op met de Kustwacht of bel 112. Gebruik je de KNRM Helpt-app? Druk op de rode knop NOODGEVAL.</div>
             <div class="modal-cta">
-              <a class="cta cta-112" href="https://www.knrm.nl/alarmeren" target="_blank" rel="noreferrer">
+              <button type="button" class="cta cta-112" id="marifoonBtn" aria-haspopup="dialog">
                 <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M12 3a9 9 0 1 0 9 9 9 9 0 0 0-9-9zm1 14h-2v-2h2zm0-4h-2V7h2z"/></svg>
                 MARIFOON #16
-              </a>
+              </button>
               <a class="cta cta-ghost" href="tel:09000111">
                 <span>KUSTWACHT</span>
                 <small class="cta-sub">0900 0111 · 112</small>
@@ -2896,6 +2921,23 @@
           document.body.classList.remove("alarm-open");
           els.alarmModal.setAttribute("aria-hidden", "true");
         };
+
+        // Marifoon info popup
+        const marifoonModal = document.getElementById("marifoonModal");
+        const marifoonBtn = document.getElementById("marifoonBtn");
+        const marifoonBackdrop = document.getElementById("marifoonBackdrop");
+        const marifoonClose = document.getElementById("marifoonClose");
+        const openMarifoon = () => {
+          document.body.classList.add("marifoon-open");
+          marifoonModal.setAttribute("aria-hidden", "false");
+        };
+        const closeMarifoon = () => {
+          document.body.classList.remove("marifoon-open");
+          marifoonModal.setAttribute("aria-hidden", "true");
+        };
+        if (marifoonBtn) marifoonBtn.addEventListener("click", openMarifoon);
+        if (marifoonBackdrop) marifoonBackdrop.addEventListener("click", closeMarifoon);
+        if (marifoonClose) marifoonClose.addEventListener("click", closeMarifoon);
 
         els.alarmBackdrop.addEventListener("click", closeAlarm);
         els.alarmClose.addEventListener("click", closeAlarm);
