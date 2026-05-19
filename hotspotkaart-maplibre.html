@@ -2237,12 +2237,30 @@
 
       function applyMapTheme(theme) {
         const mapEl = document.getElementById("map");
-        if (!mapEl) return;
-        if (theme === "dark") {
-          mapEl.style.filter = "invert(0.92) hue-rotate(180deg) brightness(0.95) contrast(0.92) saturate(0.85)";
-        } else {
-          mapEl.style.filter = "";
-        }
+        if (mapEl) mapEl.style.filter = "";
+        if (!window.map || !map.getStyle) return;
+        const apply = () => {
+          const darkWater = "#1a2b3d";
+          const lightWater = "#a8d3e8";
+          const color = theme === "dark" ? darkWater : lightWater;
+          try {
+            const style = map.getStyle();
+            if (!style || !style.layers) return;
+            style.layers.forEach(layer => {
+              const id = (layer.id || "").toLowerCase();
+              const sl = (layer["source-layer"] || "").toLowerCase();
+              const isWater = id.includes("water") || sl === "water" || sl === "ocean";
+              if (!isWater) return;
+              if (layer.type === "fill") {
+                try { map.setPaintProperty(layer.id, "fill-color", color); } catch {}
+              } else if (layer.type === "line") {
+                try { map.setPaintProperty(layer.id, "line-color", color); } catch {}
+              }
+            });
+          } catch {}
+        };
+        if (map.isStyleLoaded && map.isStyleLoaded()) apply();
+        else map.once("styledata", apply);
       }
 
       function toYouTubeEmbed(url) {
