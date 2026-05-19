@@ -2239,49 +2239,13 @@
         return "https://tiles.openfreemap.org/styles/liberty";
       }
 
-      function applyMapTheme(theme) {
+      function applyMapTheme(/* theme */) {
         const mapEl = document.getElementById("map");
         if (mapEl) mapEl.style.filter = "";
         if (!window.map || !map.getStyle) return;
-        const isDark = theme === "dark";
-
-        const tintDark = () => {
-          const waterColor = "#0d1a2a";
-          const backgroundColor = "#0d1a2a";
-          const landColor = "#1a2b3d";
-          try {
-            const style = map.getStyle();
-            if (!style || !style.layers) return;
-            style.layers.forEach(layer => {
-              const id = (layer.id || "").toLowerCase();
-              const sl = (layer["source-layer"] || "").toLowerCase();
-              const type = layer.type;
-              const isWater = id.includes("water") || sl === "water" || sl === "ocean";
-              const isBackground = type === "background";
-              const isLand = !isWater && !isBackground && type === "fill" && (
-                id.includes("landcover") || id.includes("landuse") || id === "land" ||
-                sl === "landcover" || sl === "landuse" || sl === "land" || id.includes("park")
-              );
-              try {
-                if (isBackground) map.setPaintProperty(layer.id, "background-color", backgroundColor);
-                else if (isWater) {
-                  if (type === "fill") map.setPaintProperty(layer.id, "fill-color", waterColor);
-                  else if (type === "line") map.setPaintProperty(layer.id, "line-color", waterColor);
-                } else if (isLand) {
-                  map.setPaintProperty(layer.id, "fill-color", landColor);
-                }
-              } catch {}
-            });
-          } catch {}
-        };
-
-        if (isDark) {
-          if (map.isStyleLoaded && map.isStyleLoaded()) tintDark();
-          else map.once("styledata", tintDark);
-        } else {
-          // Restore original by reloading the base style
-          try { map.setStyle(getBaseStyleUrl()); } catch {}
-        }
+        // De bestaande applyKNRMBranding() leest zelf getTheme() en kleurt
+        // de juiste lagen (water, land, achtergrond) voor zowel light als dark.
+        try { applyKNRMBranding(); } catch {}
       }
 
       function toYouTubeEmbed(url) {
