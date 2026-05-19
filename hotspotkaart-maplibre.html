@@ -2040,8 +2040,8 @@
                 <div class="meta-value" id="hsPasop">nvt</div>
               </div>
             </div>
-            <div class="label" style="font-size:16px; margin-top:16px;">VIDEO</div>
-            <div id="videoEmpty" class="hint">Geen video voor deze hotspot.</div>
+            <div class="label" id="videoLabel" style="font-size:16px; margin-top:16px;">VIDEO</div>
+            <div id="videoEmpty" class="hint" style="display:none">Geen video voor deze hotspot.</div>
             <div id="videoPlaceholder" class="video-ph" style="display:none">
               <div class="video-ph-badge">Video</div>
               <div id="videoHint" class="hint" style="margin-bottom:14px; font-size:18px; line-height:1.45; color:var(--knrm-blue);">Open deze pagina in je browser om de video te bekijken.</div>
@@ -2185,6 +2185,7 @@
         hsPasop: document.getElementById("hsPasop"),
         hsLink: document.getElementById("hsLink"),
         videoEmpty: document.getElementById("videoEmpty"),
+        videoLabel: document.getElementById("videoLabel"),
         videoPlaceholder: document.getElementById("videoPlaceholder"),
         videoHint: document.getElementById("videoHint"),
         videoOpen: document.getElementById("videoOpen"),
@@ -2676,8 +2677,13 @@
         els.hsVideoFile.removeAttribute("src");
         els.hsVideoFile.load();
         els.hsVideoFile.style.display = "none";
-        els.videoEmpty.style.display = "block";
+        els.videoEmpty.style.display = "none";
         els.videoPlaceholder.style.display = "none";
+        if (els.videoLabel) els.videoLabel.style.display = "none";
+      }
+
+      function showVideoLabel() {
+        if (els.videoLabel) els.videoLabel.style.display = "";
       }
 
       const TYPE_ICONS = {
@@ -2701,6 +2707,7 @@
         els.hsLink.href = h.link || "#";
         clearVideoUI();
         if (!h.video) return;
+        showVideoLabel();
 
         const previewMode = isPreviewLike();
         if (previewMode === "embedded") {
