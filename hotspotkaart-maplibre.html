@@ -1558,10 +1558,17 @@
         }
 
         .map-controls {
+          top: 16px;
+          right: 16px;
+          left: auto;
+          bottom: auto;
+        }
+
+        .map-controls .ctrl-menu {
+          position: fixed;
           top: 64px;
           left: 16px;
           right: auto;
-          bottom: auto;
         }
 
         .menu-panel {
@@ -1574,11 +1581,11 @@
           top: auto;
           right: auto;
           left: 50%;
-          bottom: 16px;
+          bottom: 88px;
           transform: translateX(-50%);
           width: min(360px, calc(100% - 32px));
           height: auto;
-          max-height: 62svh;
+          max-height: 60svh;
           padding: 0;
           overflow-y: auto;
           -webkit-overflow-scrolling: touch;
