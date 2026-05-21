@@ -2385,15 +2385,21 @@
         // Schone NL-grens direct van onze eigen GeoJSON — sluit altijd perfect aan op de fill
         map.addLayer({ id: "knrm-nl-border", type: "line", source: "knrm-country-boundaries", filter: nlFilter, paint: { "line-color": isDark ? "rgba(255,255,255,0.18)" : "rgba(0,73,114,0.5)", "line-width": 1.2, "line-opacity": 1 } }, beforeId);
 
-        // Laad GeoJSON async — 10m via Natural Earth GitHub (betrouwbaar, CORS OK), fallback 50m
+        // Laad GeoJSON async — lokaal bestand (~62KB): NL hoog detail + buurlanden vereenvoudigd
+        // Fallback naar Natural Earth CDN's mocht het lokale bestand falen
         if (!map.getSource("knrm-country-boundaries")._data?.features?.length) {
           const setGJ = gj => { try { map.getSource("knrm-country-boundaries").setData(gj); } catch {} };
-          fetch("https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_10m_admin_0_countries.geojson")
-            .then(r => { if (!r.ok) throw new Error("ne_10m_404"); return r.json(); })
+          fetch("./nl-boundaries.geojson")
+            .then(r => { if (!r.ok) throw new Error("local_404"); return r.json(); })
             .then(setGJ)
             .catch(() => {
-              fetch("https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_50m_admin_0_countries.geojson")
-                .then(r => { if (!r.ok) throw new Error(); return r.json(); }).then(setGJ).catch(() => {});
+              fetch("https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_10m_admin_0_countries.geojson")
+                .then(r => { if (!r.ok) throw new Error("ne_10m_404"); return r.json(); })
+                .then(setGJ)
+                .catch(() => {
+                  fetch("https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_50m_admin_0_countries.geojson")
+                    .then(r => { if (!r.ok) throw new Error(); return r.json(); }).then(setGJ).catch(() => {});
+                });
             });
         }
 
