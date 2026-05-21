@@ -1544,12 +1544,23 @@
           left: 16px;
           top: 16px;
           max-width: calc(100% - 32px);
+          padding: 4px 10px 4px 10px;
+        }
+
+        .map-title {
+          font-size: 22px;
         }
 
         .maplibregl-ctrl-bottom-left {
-          top: auto;
-          bottom: calc(env(safe-area-inset-bottom, 0px) + 48px);
+          top: 64px;
+          bottom: auto;
           left: 16px;
+        }
+
+        .maplibregl-ctrl-bottom-right {
+          top: 156px !important;
+          bottom: auto !important;
+          left: 16px !important;
         }
 
         .map-controls {
