@@ -1552,27 +1552,22 @@
         }
 
         .maplibregl-ctrl-bottom-left {
-          top: 64px;
-          bottom: auto;
+          top: auto;
+          bottom: calc(env(safe-area-inset-bottom, 0px) + 48px);
           left: 16px;
         }
 
-        .maplibregl-ctrl-bottom-right {
-          top: 156px !important;
-          bottom: auto !important;
-          left: 16px !important;
-        }
-
         .map-controls {
-          top: 16px;
-          right: 16px;
-          left: auto;
+          top: 64px;
+          left: 16px;
+          right: auto;
           bottom: auto;
         }
 
         .menu-panel {
-          top: 72px;
-          right: 16px;
+          top: 116px;
+          right: auto;
+          left: 16px;
         }
 
         .panel {
