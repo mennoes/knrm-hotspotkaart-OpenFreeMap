@@ -2130,18 +2130,18 @@
         },
         {
           id: "randmeren",
-          region: "Randmeren",
+          region: "Zuidelijke Randmeren",
           titleLine1: "Motorproblemen",
-          name: "Randmeren",
+          name: "Zuidelijke Randmeren",
           type: "Motorproblemen",
           problem: "Motorproblemen op IJmeer, Gooimeer en Eemmeer.",
           cause: "Waterplanten, wind en golfslag.",
           do: "Houd rekening met waterplanten, blijf binnen de vaargeul. Controleer je schroef regelmatig. Pas je vaart aan bij wind en golfslag.",
           pasop: "Waterplanten.",
-          lat: 52.35,
-          lon: 5.6,
+          lat: 52.30,
+          lon: 5.20,
           link: "https://www.knrm.nl/blog/tips/hotspotkaart",
-          video: ""
+          video: "https://youtu.be/GmVHUJfy2wM"
         },
         {
           id: "biesbosch",
@@ -2294,6 +2294,8 @@
           features: HOTSPOTS.map(h => {
             const label = h.region === "Zuidwest Nederland"
               ? ["ZUIDWEST", "NEDERLAND"].join("\n")
+              : h.region === "Zuidelijke Randmeren"
+              ? ["ZUIDELIJKE", "RANDMEREN"].join("\n")
               : (h.region || h.name || "").toUpperCase();
             return {
               type: "Feature",
@@ -2465,6 +2467,8 @@
 
           const labelText = h.region === "Zuidwest Nederland"
             ? "ZUIDWEST\nNEDERLAND"
+            : h.region === "Zuidelijke Randmeren"
+            ? "ZUIDELIJKE\nRANDMEREN"
             : (h.region || h.name || "").toUpperCase();
           const lbl = document.createElement("div");
           lbl.className = "knrm-marker-label";
