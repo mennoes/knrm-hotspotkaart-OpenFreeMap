@@ -2157,6 +2157,21 @@
           lon: 4.8,
           link: "https://www.knrm.nl/blog/tips/hotspotkaart",
           video: "https://youtu.be/zy0wxvotSLE"
+        },
+        {
+          id: "wijk-aan-zee-ijmuiden",
+          region: "Wijk aan Zee / IJmuiden",
+          titleLine1: "De Noordzee kan verraderlijk zijn",
+          name: "Wijk aan Zee / IJmuiden",
+          type: "Weer",
+          problem: "De Noordzee kan verraderlijk zijn. Slechte voorbereiding. Aflandige wind.",
+          cause: "Stroming, wind en branding.",
+          do: "Ga goed voorbereid het water op; verdiep je in de spot waar je gaat kiten. Plak de KNRM Be Traceable stickers op je gear.",
+          pasop: "Aflandige wind.",
+          lat: 52.477,
+          lon: 4.55,
+          link: "https://www.knrm.nl/preventie",
+          video: "https://www.youtube.com/watch?v=YV4QGbQ5PEg"
         }
       ];
 
@@ -2288,15 +2303,18 @@
         return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
       }
 
+      function getHotspotLabel(h) {
+        if (h.region === "Zuidwest Nederland") return "ZUIDWEST\nNEDERLAND";
+        if (h.region === "Zuidelijke Randmeren") return "ZUIDELIJKE\nRANDMEREN";
+        if (h.region === "Wijk aan Zee / IJmuiden") return "WIJK AAN ZEE /\nIJMUIDEN";
+        return (h.region || h.name || "").toUpperCase();
+      }
+
       function makeHotspotGeoJSON() {
         return {
           type: "FeatureCollection",
           features: HOTSPOTS.map(h => {
-            const label = h.region === "Zuidwest Nederland"
-              ? ["ZUIDWEST", "NEDERLAND"].join("\n")
-              : h.region === "Zuidelijke Randmeren"
-              ? ["ZUIDELIJKE", "RANDMEREN"].join("\n")
-              : (h.region || h.name || "").toUpperCase();
+            const label = getHotspotLabel(h);
             return {
               type: "Feature",
               id: h.id,
@@ -2465,11 +2483,7 @@
           dot.className = "knrm-marker-dot";
           wrap.appendChild(dot);
 
-          const labelText = h.region === "Zuidwest Nederland"
-            ? "ZUIDWEST\nNEDERLAND"
-            : h.region === "Zuidelijke Randmeren"
-            ? "ZUIDELIJKE\nRANDMEREN"
-            : (h.region || h.name || "").toUpperCase();
+          const labelText = getHotspotLabel(h);
           const lbl = document.createElement("div");
           lbl.className = "knrm-marker-label";
           lbl.textContent = labelText;
